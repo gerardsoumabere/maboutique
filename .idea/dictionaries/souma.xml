@@ -3,6 +3,7 @@
     <words>
       <w>actuel</w>
       <w>adresse</w>
+      <w>ajouter</w>
       <w>bienvenue</w>
       <w>compte</w>
       <w>confirmer</w>
@@ -11,6 +12,7 @@
       <w>doivent</w>
       <w>déconnexion</w>
       <w>featurettes</w>
+      <w>filtrer</w>
       <w>firstname</w>
       <w>formulaire</w>
       <w>gérard</w>
@@ -23,10 +25,13 @@
       <w>mise</w>
       <w>navbar</w>
       <w>nouveau</w>
+      <w>panier</w>
       <w>personnalisée</w>
       <w>postgresql</w>
+      <w>produit</w>
       <w>produits</w>
       <w>prénom</w>
+      <w>randomhash</w>
       <w>retourner</w>
       <w>saisir</w>
       <w>smtp</w>

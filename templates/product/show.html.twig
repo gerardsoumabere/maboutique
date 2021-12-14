@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }} - Maboutique{% endblock %}
+
+{% block content %}
+  <h1>{{ product.name }} </h1>
+  <div class="row">
+
+      <div class="col col-md-5">
+          <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
+      </div>
+      <div class="col col-md-7 my-auto">
+        <h3> {{ product.name }}</h3>
+        <p> {{ product.subtitle }}</p>
+        <span class="product-page-price"> {{ (product.price /100) | number_format (2,",",".")}} € </span>
+        <hr>
+        <p> {{ product.description }}</p>
+        <hr>
+        <a href="#" class="btn btn-primary">Ajouter au panier</a>
+
+
+      </div>
+  </div>
+
+
+{% endblock %}
