@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - Maboutique{% endblock %}
+
+{% block content %}
+    <h1>Mon panier</h1>
+    Retrouver l'ensemble des produits que vous avez ajouté à votre panier.
+    <hr>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Produit</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in cart %}
+            {{ dump(product) }}
+        <tr>
+            <td></td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+        </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

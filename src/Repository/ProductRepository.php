@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
-use App\SearchClass\Search;
+use App\Classe\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -70,7 +70,7 @@ class ProductRepository extends ServiceEntityRepository
 
     /**
      * @param Search $search
-     * @return Product|array|null
+     * @return Product[]
      */
     public function findWithSearch(Search $search)
     {
@@ -79,10 +79,17 @@ class ProductRepository extends ServiceEntityRepository
                 ->createQueryBuilder('p')
                 ->select('c','p')
                 ->join('p.category','c');
+
             if (!empty($search->categories)){
                 $query = $query
                     ->andWhere('c.id IN (:categories)')
                     ->setParameter('categories',$search->categories);
+            }
+
+            if (!empty($search->string)){
+                $query = $query
+                    ->andWhere('p.name like :string')
+                    ->setParameter('string',"%{$search->string}%");
             }
 
             return $query->getQuery()->getResult();
