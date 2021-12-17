@@ -2,9 +2,9 @@ body{
     position: relative;
 }
 
-.row {
-    padding-bottom: 100px;
-}
+/*.row {*/
+/*    padding-bottom: 100px;*/
+/*}*/
 
 .navbar-item-custom, .navbar-item-custom a{
     color: white;
