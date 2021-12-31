@@ -66,20 +66,20 @@ class Cart
     public function getFull(){
 
         $cartComplete = [];
+        if ($this->get() != null) {
+            foreach ($this->get() as $id => $quantity) {
+                $product_object = $this->entityManager->getRepository(Product::class)->findOneById($id);
 
-        foreach ( $this->get() as $id => $quantity){
-            $product_object = $this->entityManager->getRepository(Product::class)->findOneById($id);
-
-            if (!$product_object){
-                $this->delete($id);
-                continue;
+                if (!$product_object) {
+                    $this->delete($id);
+                    continue;
+                }
+                $cartComplete[] = [
+                    'product' => $product_object,
+                    'quantity' => $quantity
+                ];
             }
-            $cartComplete[] = [
-                'product' => $product_object,
-                'quantity' =>  $quantity
-            ];
         }
-
         return $cartComplete;
     }
 }

@@ -68,6 +68,11 @@ class Address
      */
     private $phone;
 
+    public function __toString()
+    {
+        return $this ->getName().'[br]'.$this->getAddress().'[br]'.$this->getCity().' - '.$this->getCountry();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,7 +131,7 @@ class Address
         return $this->company;
     }
 
-    public function setCompany(?string $compagny): self
+    public function setCompany(?string $company): self
     {
         $this->company = $company;
 

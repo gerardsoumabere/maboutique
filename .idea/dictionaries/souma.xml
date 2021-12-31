@@ -12,10 +12,13 @@
       <w>csrf</w>
       <w>doivent</w>
       <w>déconnexion</w>
+      <w>endset</w>
       <w>featurettes</w>
       <w>filtrer</w>
       <w>firstname</w>
       <w>formulaire</w>
+      <w>fqcn</w>
+      <w>fullname</w>
       <w>gérard</w>
       <w>identique</w>
       <w>jour</w>
@@ -35,6 +38,7 @@
       <w>prénom</w>
       <w>randomhash</w>
       <w>retourner</w>
+      <w>récap</w>
       <w>saisir</w>
       <w>smtp</w>
       <w>sommes</w>
