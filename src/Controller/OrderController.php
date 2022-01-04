@@ -7,8 +7,6 @@ use App\Entity\Order;
 use App\Entity\OrderDetails;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
-use Stripe\Checkout\Session;
-use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,20 +64,18 @@ class OrderController extends AbstractController
             $delivery_content .= '<br/>'.$delivery->getPostal().' '.$delivery->getCity();
             $delivery_content .= '<br/>'.$delivery->getCountry();
 
-
             //Enregistrer ma commande Order
             $order = new Order();
+            $reference = $date->format('dmY').'-'.uniqid();
+            $order -> setReference($reference);
             $order -> setUser($this->getUser());
-            $order -> setCreatedAt($date);
+            $order -> setCreatedAt($date)
             $order -> setCarrierName($carriers->getName());
             $order -> setCarrierPrice($carriers->getPrice());
             $order -> setDelivery($delivery_content);
             $order -> setIsPaid(0);
 
             $this->entityManager->persist($order);
-
-            $products_for_stripes=[];
-            $YOUR_DOMAIN = 'http://127.0.0.1:800';
 
             //Enregistrer ma commande OrderDetails
             foreach($cart->getFull() as $product){
@@ -92,43 +88,18 @@ class OrderController extends AbstractController
 
                 $this->entityManager->persist($orderDetails);
 
-                $products_for_stripes[]=[
-                    'price_data' => [
-                        'currency' => 'usd',
-                        'product_data' => [
-                            'name' => $product['product']->getName(),
-                            'images' => [$YOUR_DOMAIN."/uploads/".$product['product']->getIllustration()]
-                        ],
-                        'unit_amount' => $product['product']->getPrice(),
-                    ],
-                    'quantity' => $product['quantity'],
-                ];
             }
 
-
-            //$this->entityManager->flush();
-
-            Stripe::setApiKey('sk_test_51KAtb8J6RHo8Aj90EjPkENoHbPnXmNS4RN13zdz3FKNNQZVtxbqzx6bVcNUpyXpoU7FaxooXptArMGimuijKPAye00UUtysThS');
-
-            $session = Session::create([
-                'line_items' => [
-                    $products_for_stripes
-                ],
-                'mode' => 'payment',
-                'success_url' => $YOUR_DOMAIN.'/success.html',
-                'cancel_url' => $YOUR_DOMAIN.'/cancel.html',
-            ]);
+            $this->entityManager->flush();
 
             return $this->render('order/add.html.twig',[
                 'cart'=>$cart->getFull(),
                 'carrier'=>$carriers,
                 'delivery'=>$delivery_content,
-                'stripe_checkout_session'=>$session->id
+                'reference'=>$order->getReference()
             ]);
         }
 
         return $this->redirectToRoute('cart');
-
-
     }
 }

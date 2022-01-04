@@ -62,8 +62,10 @@
 
 
 
-            <a  href="" class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ (total /100 + carrier.price) | number_format (2,",",".") }} €</a>
-
+            {# <a  href="" class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ (total /100 + carrier.price) | number_format (2,",",".") }} €</a> #}
+            <form action="{{ path('stripe_create_session') }}" method="POST">
+                <button type="submit" id="checkout-button" class="btn btn-success btn-block mt-3">Payer | {{ (total /100 + carrier.price) | number_format (2,",",".") }} €</button>
+            </form>
         </div>
     </div>
 {% endblock %}
