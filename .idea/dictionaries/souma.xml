@@ -1,20 +1,38 @@
 <component name="ProjectDictionaryState">
   <dictionary name="souma">
     <words>
+      <w>accepté</w>
       <w>actuel</w>
       <w>adress</w>
       <w>adresse</w>
       <w>ajouter</w>
+      <w>avez</w>
+      <w>bien</w>
       <w>bienvenue</w>
+      <w>bonjour</w>
+      <w>choisi</w>
       <w>commande</w>
+      <w>commandes</w>
       <w>compte</w>
       <w>confirmer</w>
+      <w>confirmons</w>
       <w>connecter</w>
+      <w>correctement</w>
+      <w>cours</w>
       <w>csrf</w>
       <w>doivent</w>
       <w>déconnexion</w>
+      <w>déja</w>
+      <w>déroulée</w>
+      <w>détails</w>
       <w>endset</w>
       <w>enregistrer</w>
+      <w>envoi</w>
+      <w>envoie</w>
+      <w>envoyé</w>
+      <w>erreur</w>
+      <w>espère</w>
+      <w>existe</w>
       <w>featurettes</w>
       <w>filtrer</w>
       <w>firstname</w>
@@ -26,28 +44,55 @@
       <w>jour</w>
       <w>lastname</w>
       <w>lillas</w>
+      <w>livraison</w>
       <w>maboutique</w>
       <w>marche</w>
+      <w>membre</w>
+      <w>mettant</w>
       <w>mettre</w>
       <w>mise</w>
+      <w>modifie</w>
       <w>navbar</w>
+      <w>notre</w>
       <w>nouveau</w>
+      <w>paiement</w>
       <w>panier</w>
+      <w>passé</w>
+      <w>payée</w>
+      <w>permet</w>
+      <w>personalmessage</w>
       <w>personnalisée</w>
       <w>postgresql</w>
+      <w>pouvez</w>
+      <w>prix</w>
       <w>produit</w>
       <w>produits</w>
       <w>prénom</w>
+      <w>préparation</w>
+      <w>présent</w>
+      <w>quantité</w>
       <w>randomhash</w>
       <w>recapitulatif</w>
+      <w>renseigné</w>
       <w>retourner</w>
       <w>récap</w>
+      <w>récapitulatif</w>
+      <w>référence</w>
       <w>saisir</w>
+      <w>semblerait</w>
+      <w>sera</w>
       <w>smtp</w>
       <w>sommes</w>
       <w>soumabere</w>
+      <w>statut</w>
       <w>toggler</w>
+      <w>traitement</w>
+      <w>transporteur</w>
+      <w>unitaire</w>
+      <w>utilisateur</w>
       <w>veuillez</w>
+      <w>vient</w>
+      <w>voir</w>
       <w>votre</w>
       <w>vous</w>
       <w>être</w>

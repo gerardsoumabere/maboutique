@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de commande - Maboutique{% endblock %}
+
+{% block content %}
+    <h2 xmlns="http://www.w3.org/1999/html">Confirmation de commande</h2>
+    <p>
+        Merci <strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong></br>
+        Nous vous confirmons que votre commande  <strong>{{ order.reference }}</strong> est en cours de traitement.</br>
+        Un email récapitulatif vient de vous être envoyé à l'adresse : <strong>{{ order.user.email }}</strong>
+        <hr>
+        Votre commande sera livrée par <strong>{{ order.carrierName }}</strong> à l'adresse suivante : </br>
+        <strong>{{ order.delivery | raw  }}</strong>
+        <hr>
+        Pour suivre cotre commande , rendez-vous dans votre <a href="{{ path('account_order')}}">compte</a>
+    </p>
+{% endblock %}

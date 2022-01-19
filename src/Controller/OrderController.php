@@ -69,11 +69,11 @@ class OrderController extends AbstractController
             $reference = $date->format('dmY').'-'.uniqid();
             $order -> setReference($reference);
             $order -> setUser($this->getUser());
-            $order -> setCreatedAt($date)
+            $order -> setCreatedAt($date);
             $order -> setCarrierName($carriers->getName());
             $order -> setCarrierPrice($carriers->getPrice());
             $order -> setDelivery($delivery_content);
-            $order -> setIsPaid(0);
+            $order -> setState(0);
 
             $this->entityManager->persist($order);
 
@@ -87,8 +87,8 @@ class OrderController extends AbstractController
                 $orderDetails->setTotal($product['product']->getPrice() * $product['quantity']);
 
                 $this->entityManager->persist($orderDetails);
-
             }
+
 
             $this->entityManager->flush();
 
@@ -96,7 +96,7 @@ class OrderController extends AbstractController
                 'cart'=>$cart->getFull(),
                 'carrier'=>$carriers,
                 'delivery'=>$delivery_content,
-                'reference'=>$order->getReference()
+                'reference'=>$order ->getReference()
             ]);
         }
 

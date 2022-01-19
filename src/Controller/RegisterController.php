@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\RegisterType;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegisterController extends AbstractController
 {
+
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager){
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/inscription', name: 'register')]
-    public function index(Request $request,ManagerRegistry $doctrine,UserPasswordHasherInterface $encoder): Response
+    public function index(Request $request,UserPasswordHasherInterface $encoder): Response
     {
+        $notification = null;
+
         $user = new User();
         $form = $this->createForm(RegisterType::class,$user);
 
@@ -25,17 +35,32 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             $user = $form->getData();
-            $password =$encoder->hashPassword($user,$user->getPassword());
 
-            $user->setPassword($password);
+            $search_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
 
-            $entityManager=$doctrine->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            if(!$search_email){
+
+                $password =$encoder->hashPassword($user,$user->getPassword());
+
+                $user->setPassword($password);
+
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+
+                $mail = new Mail();
+                $content = "Bonjour".$user->getFirstname()."<br/> Bienvenue sur la fausse boutique la plus pratique pour mes projets Symfony.";
+                $mail->send($user->getEmail(),$user->getFirstname(),'Bienvenue sur Maboutique',$content,);
+
+                $notification = "Votre inscription s'est correctement déroulée,vous pouvez dès à présent vous connecter à votre compte.";
+
+            }else{
+                $notification = "L'email que vous avez renseigné existe déja";
+            }
         }
 
         return $this->render('register/index.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'notification'=> $notification
         ]);
     }
 }

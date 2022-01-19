@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur de paiement - Maboutique{% endblock %}
+
+{% block content %}
+    <h2>Erreur de commande</h2>
+    <p>
+        Merci <strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong></br>
+        Il semblerait que le paiement de la commande <strong>{{ order.reference }}</strong> n'a pas pu aboutir.</br>
+        Une confirmation par email vient de vous être envoyé à l'adresse : <strong>{{ order.user.email }}</strong>
+        <hr>
+    </p>
+    <a href="{{ path('order') }}" class="btn btn-success">Réessayer le paiement</a>
+{% endblock %}
