@@ -26,10 +26,11 @@ class OrderCrudController extends AbstractCrudController
     private CrudUrlGenerator $crudUrlGenerator;
     private AdminUrlGenerator $adminUrlGenerator;
 
-    public function __construct(EntityManagerInterface $entityManager,CrudUrlGenerator $crudUrlGenerator,AdminUrlGenerator $adminUrlGenerator)
+//    public function __construct(EntityManagerInterface $entityManager,CrudUrlGenerator $crudUrlGenerator,AdminUrlGenerator $adminUrlGenerator) Ancienne version
+    public function __construct(EntityManagerInterface $entityManager,AdminUrlGenerator $adminUrlGenerator)
     {
         $this->entityManager = $entityManager;
-        $this->crudUrlGenerator = $crudUrlGenerator;
+//        $this->crudUrlGenerator = $crudUrlGenerator; ancienne version
         $this->adminUrlGenerator = $adminUrlGenerator;
     }
 
